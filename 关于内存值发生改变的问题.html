@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 基本数据类型　　 // 值类型： 数值、布尔型、null、undefined
+        var a = 10;
+        b = a;
+        console.log("a:",a,"b:",b);//a: 10 b: 10
+    
+        // 改变b的值
+        b = 20;
+        console.log("a:",a,"b:",b);//a: 10 b: 20
+        //基本数据类型，没有复杂的结构，就是一个字面量值，所有通过赋值运算符直接将其值改掉，不会影响其它变量
+    
+        //复杂的数据类型 如：数组 函数 对象等等　　 //引用类型
+        var a = {};
+        var b = a;
+        console.log("a:",a,"b:",b);//a: {} b: {}
+    
+        //修改 b 对象中的结构  比如添加一个属性 c  并给属性值设置为一个空对象  {}
+        b.c = {};
+        console.log("a:",a,"b:",b);//a: {c: {}}   b: {c: {}}
+    
+        //修改 b 的指向  指向 b.c 这个地址   也就是 a.c的地址
+        b = b.c;
+        console.log("a:",a,"b:",b);//a: {c: {}}   b: {}
+        
+        // 再次修改 b 中的结构  添加一个属性d  这个值还是一个空对象 {}
+        b.d = {};
+        console.log("a:",a,"b:",b);//a: {c: {d: {}}}  b: {d: {}}
+    
+        // 再次改变 b 的指向  指向 b.d 这个地址  也就是 a.c.d 的地址
+        b = b.d;
+        console.log("a:",a,"b:",b);//a: {c: {d: {}}}  b: {}
+        </script>
+</body>
+</html>
