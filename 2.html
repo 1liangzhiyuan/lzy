@@ -1,3 +1,75 @@
-222
-hello boys!
-this is new nav !
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        #list {
+            width: 200px;
+            height: 600px;
+            margin: auto;
+        }
+        li {
+            width: 100%;
+            height: 100px;
+            border: 1px solid #000;
+            text-align: center;
+            line-height: 100px;
+            margin-top: 10px;
+            background-color: plum;
+        }
+        li:nth-of-type(even) {
+            background-color: pink;
+        }
+    </style>
+</head>
+<body>
+    <ul id="list">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <li>6</li>
+    </ul>
+</body>
+<script>
+    // 点击哪一个li 哪一个li弹框显示点击了第几条内容
+
+    // 1 利用闭包
+    let lis = document.querySelectorAll('li');
+    // for(var i = 0; i < lis.length; i++) {
+    //     (function(j) {
+    //         lis[j].onclick = function() {
+    //             alert('点击了第' + Number(j + 1) + '条内容')
+    //         }
+    //     })(i)
+    // }
+
+    // 2 利用this 对应索引解决
+    
+    // for(var i = 0; i < lis.length; i++) {
+    //     lis[i].idx = i;
+    //     lis[i].onclick = function() {
+    //         alert('点击了第' + Number(this.idx + 1) + '条内容')
+    //     }
+    // }
+
+    // 3 利用事件委托解决
+    let uls = document.getElementById('list');
+    for(var i = 0; i < lis.length; i++) {
+        lis[i].setAttribute('data-index', i)
+    }
+    uls.onclick = function(e) {
+        let t = e.target || e.srcElement;
+        alert('您点击了第' + (Number(t.getAttribute('data-index'))+1) + '条内容')
+    }
+</script>
+</html>
